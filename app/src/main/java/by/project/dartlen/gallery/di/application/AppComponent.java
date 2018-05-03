@@ -8,7 +8,8 @@ import by.project.dartlen.gallery.ui.activity.Activity;
 import dagger.Component;
 import dagger.android.support.AndroidSupportInjectionModule;
 
-@Component(modules = {AppModule.class, NavigationModule.class, GalleryModule.class, AndroidSupportInjectionModule.class, ActivityBindingModule.class})
+@Component(modules = {AppModule.class, NavigationModule.class, GalleryModule.class,
+        AndroidSupportInjectionModule.class, ActivityBindingModule.class, GoogleSignInOptionsModule.class})
 @Singleton
 public interface AppComponent {
     //GalleryComponent plusGalleryComponent(GalleryModule module);

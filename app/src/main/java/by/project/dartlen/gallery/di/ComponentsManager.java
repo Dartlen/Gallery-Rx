@@ -5,6 +5,7 @@ import android.content.Context;
 import by.project.dartlen.gallery.di.application.AppComponent;
 import by.project.dartlen.gallery.di.application.AppModule;
 import by.project.dartlen.gallery.di.application.DaggerAppComponent;
+import by.project.dartlen.gallery.di.application.GoogleSignInOptionsModule;
 
 public class ComponentsManager {
     private Context context;
@@ -19,6 +20,7 @@ public class ComponentsManager {
         if(appComponent == null) {
             appComponent = DaggerAppComponent.builder()
                     .appModule(new AppModule(context))
+                    .googleSignInOptionsModule(new GoogleSignInOptionsModule(context))
                     .build();
         }
         return appComponent;
