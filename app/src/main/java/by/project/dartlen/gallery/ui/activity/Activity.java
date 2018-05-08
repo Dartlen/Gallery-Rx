@@ -1,6 +1,5 @@
 package by.project.dartlen.gallery.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
@@ -18,7 +17,7 @@ import by.project.dartlen.gallery.business.ActivityInteractor;
 import by.project.dartlen.gallery.presentation.activity.ActivityPresenter;
 import by.project.dartlen.gallery.presentation.activity.ActivityView;
 import by.project.dartlen.gallery.ui.gallery.GalleryFragment;
-import by.project.dartlen.gallery.ui.signin.LoginFragment;
+import by.project.dartlen.gallery.ui.signin.SignInFragment;
 import dagger.Lazy;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
@@ -40,7 +39,7 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
     @Inject
     Lazy<GalleryFragment> galleryFragmentLazy;
     @Inject
-    Lazy<LoginFragment> loginFragmentLazy;
+    Lazy<SignInFragment> loginFragmentLazy;
     @Inject
     Router router;
     @Inject
