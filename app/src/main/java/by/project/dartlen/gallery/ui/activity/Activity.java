@@ -18,6 +18,7 @@ import by.project.dartlen.gallery.presentation.activity.ActivityPresenter;
 import by.project.dartlen.gallery.presentation.activity.ActivityView;
 import by.project.dartlen.gallery.ui.gallery.GalleryFragment;
 import by.project.dartlen.gallery.ui.signin.SignInFragment;
+import by.project.dartlen.gallery.ui.signup.SignUpFragment;
 import dagger.Lazy;
 import ru.terrakok.cicerone.Navigator;
 import ru.terrakok.cicerone.NavigatorHolder;
@@ -26,6 +27,7 @@ import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
 import static by.project.dartlen.gallery.utils.Constants.GALLERY;
 import static by.project.dartlen.gallery.utils.Constants.LOGIN;
+import static by.project.dartlen.gallery.utils.Constants.SIGNUP;
 
 
 public class Activity extends MvpAppCompatActivity implements ActivityView {
@@ -40,6 +42,8 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
     Lazy<GalleryFragment> galleryFragmentLazy;
     @Inject
     Lazy<SignInFragment> loginFragmentLazy;
+    @Inject
+    Lazy<SignUpFragment> signUpFragmentLazy;
     @Inject
     Router router;
     @Inject
@@ -59,6 +63,8 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
                     return loginFragmentLazy.get();
                 case GALLERY:
                     return galleryFragmentLazy.get();
+                case SIGNUP:
+                    return signUpFragmentLazy.get();
                 default:
                     throw new RuntimeException("Unknown screen key!");
             }
@@ -78,6 +84,7 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
     @Override
     protected void onResume() {
         super.onResume();
+        GalleryApp.getComponentsManager().getAppComponent().inject(this);
         navigatorHolder.setNavigator(navigator);
     }
 

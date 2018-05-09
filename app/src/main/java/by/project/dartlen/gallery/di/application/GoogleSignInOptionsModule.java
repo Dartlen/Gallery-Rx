@@ -5,16 +5,12 @@ import android.content.Context;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 
 import javax.inject.Singleton;
 
-import by.project.dartlen.gallery.R;
 import dagger.Module;
 import dagger.Provides;
-
-import static android.provider.Settings.Global.getString;
 
 @Module
 public class GoogleSignInOptionsModule {
@@ -23,7 +19,7 @@ public class GoogleSignInOptionsModule {
 
     public GoogleSignInOptionsModule(Context context){
          gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                 .requestIdToken(getString(R.string.default_web_client_id))
+                 .requestIdToken("910834012347-u80ppevu3rsh52lvo0di4ltufldpsqme.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
@@ -36,9 +32,10 @@ public class GoogleSignInOptionsModule {
         return GoogleSignIn.getClient(context, gso);
     }
 
-    /*@Provides
+    @Provides
     @Singleton
     FirebaseAuth provideFirebaseAuth(){
         return FirebaseAuth.getInstance();
-    }*/
+    }
+
 }

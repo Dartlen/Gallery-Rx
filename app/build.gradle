@@ -20,15 +20,18 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-        incremental false
+        //incremental false
     }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-
+    compile ('com.github.nkzawa:socket.io-client:0.4.1'){
+        exclude group: 'org.json', module: 'json'
+    }
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
@@ -103,7 +106,10 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-
+    compile 'android.arch.persistence.room:runtime:1.1.0'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.0'
 }
 
 
+
+apply plugin: 'com.google.gms.google-services'
