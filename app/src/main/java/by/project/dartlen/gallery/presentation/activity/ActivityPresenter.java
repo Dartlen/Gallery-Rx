@@ -2,8 +2,6 @@ package by.project.dartlen.gallery.presentation.activity;
 
 import com.arellomobile.mvp.InjectViewState;
 
-import javax.inject.Inject;
-
 import by.project.dartlen.gallery.business.ActivityInteractor;
 import by.project.dartlen.gallery.presentation.common.BasePresenter;
 import ru.terrakok.cicerone.Router;
