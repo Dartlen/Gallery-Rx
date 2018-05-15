@@ -1,10 +1,12 @@
 package by.project.dartlen.gallery.ui.signin;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -38,6 +41,7 @@ import butterknife.Unbinder;
 import by.project.dartlen.gallery.R;
 import by.project.dartlen.gallery.presentation.signin.SignInPresenter;
 import by.project.dartlen.gallery.presentation.signin.SignInView;
+import io.reactivex.functions.Consumer;
 import ru.terrakok.cicerone.Router;
 
 import static by.project.dartlen.gallery.utils.Constants.RC_SIGN_IN;
@@ -88,6 +92,7 @@ public class SignInFragment extends MvpAppCompatFragment implements SignInView {
         super.onCreate(savedInstanceState);
     }
 
+    @SuppressLint("CheckResult")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -97,6 +102,7 @@ public class SignInFragment extends MvpAppCompatFragment implements SignInView {
             Intent signInIntent = googleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, RC_SIGN_IN);
         });
+
         loginEmail.setOnClickListener(v1 -> {
             firebaseAuth.signInWithEmailAndPassword(editTextEmail.getText().toString(), editTextPassword.getText().toString())
                     .addOnCompleteListener(Objects.requireNonNull(getActivity()),

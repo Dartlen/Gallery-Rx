@@ -1,6 +1,10 @@
 package by.project.dartlen.gallery.di.gallery;
 
+import org.mapstruct.factory.Mappers;
+
 import by.project.dartlen.gallery.business.gallery.GalleryInteractor;
+import by.project.dartlen.gallery.model.db.ImageDao;
+import by.project.dartlen.gallery.model.mappers.GalleryMapper;
 import by.project.dartlen.gallery.repositories.gallery.GalleryRepository;
 import dagger.Module;
 import dagger.Provides;
@@ -17,8 +21,15 @@ public class GalleryModule {
 
     @Provides
     @GalleryScope
-    GalleryRepository provideRepository(){
-        return new GalleryRepository();
+    GalleryRepository provideRepository(GalleryMapper galleryMapper, ImageDao imageDao){
+        return new GalleryRepository(galleryMapper, imageDao);
     }
+
+    @Provides
+    @GalleryScope
+    GalleryMapper provideMapper(){
+        return Mappers.getMapper(GalleryMapper.class);
+    }
+
 
 }
