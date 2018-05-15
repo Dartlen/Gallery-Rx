@@ -7,13 +7,11 @@ import android.widget.Toast;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
 import javax.inject.Inject;
 
 import by.project.dartlen.gallery.GalleryApp;
 import by.project.dartlen.gallery.R;
-import by.project.dartlen.gallery.business.ActivityInteractor;
 import by.project.dartlen.gallery.presentation.activity.ActivityPresenter;
 import by.project.dartlen.gallery.presentation.activity.ActivityView;
 import by.project.dartlen.gallery.ui.gallery.GalleryFragment;
@@ -34,25 +32,24 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
 
     @InjectPresenter
     ActivityPresenter presenter;
-    @Inject
-    ActivityInteractor activityInteractor;
+
     @Inject
     NavigatorHolder navigatorHolder;
+
     @Inject
     Lazy<GalleryFragment> galleryFragmentLazy;
     @Inject
     Lazy<SignInFragment> loginFragmentLazy;
     @Inject
     Lazy<SignUpFragment> signUpFragmentLazy;
+
     @Inject
     Router router;
-    @Inject
-    GoogleSignInClient googleSignInClient;
 
     @ProvidePresenter
     ActivityPresenter providePresenter(){
-        GalleryApp.getComponentsManager().getAppComponent().inject(this);
-        return new ActivityPresenter(activityInteractor, router);
+        GalleryApp.getComponentsManager().getGalleryComponent().inject(this);
+        return new ActivityPresenter(router);
     }
 
     private Navigator navigator = new SupportFragmentNavigator(getSupportFragmentManager(), R.id.main_container) {
@@ -84,7 +81,7 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
     @Override
     protected void onResume() {
         super.onResume();
-        GalleryApp.getComponentsManager().getAppComponent().inject(this);
+        GalleryApp.getComponentsManager().getGalleryComponent().inject(this);
         navigatorHolder.setNavigator(navigator);
     }
 

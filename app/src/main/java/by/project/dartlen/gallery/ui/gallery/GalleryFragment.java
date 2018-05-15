@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Gallery;
 import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
@@ -25,7 +24,6 @@ import by.project.dartlen.gallery.R;
 import by.project.dartlen.gallery.business.gallery.GalleryInteractor;
 import by.project.dartlen.gallery.presentation.gallery.GalleryPresenter;
 import by.project.dartlen.gallery.presentation.gallery.GalleryView;
-import by.project.dartlen.gallery.repositories.gallery.GalleryRepository;
 import by.project.dartlen.gallery.ui.gallery.list.GalleryAdapter;
 
 public class GalleryFragment extends MvpAppCompatFragment implements GalleryView{
@@ -33,8 +31,8 @@ public class GalleryFragment extends MvpAppCompatFragment implements GalleryView
     @InjectPresenter
     GalleryPresenter presenter;
 
-    /*@Inject
-    GalleryInteractor galleryInteractor;*/
+    @Inject
+    GalleryInteractor galleryInteractor;
 
     @Inject
     public GalleryFragment(){
@@ -51,8 +49,8 @@ public class GalleryFragment extends MvpAppCompatFragment implements GalleryView
 
     @ProvidePresenter
     GalleryPresenter providePresenter(){
-        GalleryApp.getComponentsManager().getAppComponent().inject(this);
-        return new GalleryPresenter(new GalleryInteractor(new GalleryRepository()));
+        GalleryApp.getComponentsManager().getGalleryComponent().inject(this);
+        return new GalleryPresenter(galleryInteractor);
     }
 
     @Override

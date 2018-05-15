@@ -8,9 +8,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import javax.inject.Singleton;
 
-import by.project.dartlen.gallery.business.ActivityInteractor;
 import by.project.dartlen.gallery.data.permission.PermissionsRepository;
-import by.project.dartlen.gallery.repositories.activity.ActivityRepository;
 import dagger.Module;
 import dagger.Provides;
 
@@ -52,17 +50,5 @@ public class AppModule {
     @Singleton
     GoogleApiAvailability provideGoogleApiAvailability(){
         return GoogleApiAvailability.getInstance();
-    }
-
-    @Provides
-    @Singleton
-    ActivityInteractor provideInteractor(ActivityRepository repository){
-        return new ActivityInteractor(repository);
-    }
-
-    @Provides
-    @Singleton
-    ActivityRepository provideActivityRepository(SharedPreferences sharedPreferences){
-        return new ActivityRepository(sharedPreferences);
     }
 }
