@@ -5,6 +5,7 @@ import android.content.Context;
 import by.project.dartlen.gallery.di.application.AppComponent;
 import by.project.dartlen.gallery.di.application.AppModule;
 import by.project.dartlen.gallery.di.application.DaggerAppComponent;
+import by.project.dartlen.gallery.di.application.FirebaseModule;
 import by.project.dartlen.gallery.di.application.GoogleSignInOptionsModule;
 import by.project.dartlen.gallery.di.application.RoomModule;
 import by.project.dartlen.gallery.di.gallery.GalleryComponent;
@@ -26,6 +27,7 @@ public class ComponentsManager {
                     .appModule(new AppModule(context))
                     .googleSignInOptionsModule(new GoogleSignInOptionsModule(context))
                     .roomModule(new RoomModule(context))
+                    .firebaseModule(new FirebaseModule())
                     .build();
         }
         return appComponent;

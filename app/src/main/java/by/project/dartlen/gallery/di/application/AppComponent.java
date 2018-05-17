@@ -8,7 +8,8 @@ import by.project.dartlen.gallery.di.gallery.GalleryModule;
 import dagger.Component;
 
 
-@Component(modules = {AppModule.class, NavigationModule.class, GoogleSignInOptionsModule.class, RoomModule.class})
+@Component(modules = {AppModule.class, NavigationModule.class, GoogleSignInOptionsModule.class,
+        RoomModule.class, FirebaseModule.class})
 @Singleton
 public interface AppComponent {
 

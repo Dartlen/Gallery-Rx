@@ -22,6 +22,7 @@ import butterknife.Unbinder;
 import by.project.dartlen.gallery.GalleryApp;
 import by.project.dartlen.gallery.R;
 import by.project.dartlen.gallery.business.gallery.GalleryInteractor;
+import by.project.dartlen.gallery.presentation.common.SchedulersProvider;
 import by.project.dartlen.gallery.presentation.gallery.GalleryPresenter;
 import by.project.dartlen.gallery.presentation.gallery.GalleryView;
 import by.project.dartlen.gallery.ui.gallery.list.GalleryAdapter;
@@ -33,6 +34,9 @@ public class GalleryFragment extends MvpAppCompatFragment implements GalleryView
 
     @Inject
     GalleryInteractor galleryInteractor;
+
+    @Inject
+    SchedulersProvider schedulersProvider;
 
     @Inject
     public GalleryFragment(){
@@ -50,7 +54,7 @@ public class GalleryFragment extends MvpAppCompatFragment implements GalleryView
     @ProvidePresenter
     GalleryPresenter providePresenter(){
         GalleryApp.getComponentsManager().getGalleryComponent().inject(this);
-        return new GalleryPresenter(galleryInteractor);
+        return new GalleryPresenter(galleryInteractor, schedulersProvider);
     }
 
     @Override

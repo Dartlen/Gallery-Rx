@@ -9,6 +9,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import javax.inject.Singleton;
 
 import by.project.dartlen.gallery.data.permission.PermissionsRepository;
+import by.project.dartlen.gallery.presentation.common.SchedulersProvider;
 import dagger.Module;
 import dagger.Provides;
 
@@ -50,5 +51,11 @@ public class AppModule {
     @Singleton
     GoogleApiAvailability provideGoogleApiAvailability(){
         return GoogleApiAvailability.getInstance();
+    }
+
+    @Provides
+    @Singleton
+    SchedulersProvider providerSchedulersProvider(){
+        return new SchedulersProvider();
     }
 }
