@@ -14,6 +14,8 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 
+import java.util.HashMap;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -22,6 +24,7 @@ import butterknife.Unbinder;
 import by.project.dartlen.gallery.GalleryApp;
 import by.project.dartlen.gallery.R;
 import by.project.dartlen.gallery.business.gallery.GalleryInteractor;
+import by.project.dartlen.gallery.model.entities.Image;
 import by.project.dartlen.gallery.presentation.common.SchedulersProvider;
 import by.project.dartlen.gallery.presentation.gallery.GalleryPresenter;
 import by.project.dartlen.gallery.presentation.gallery.GalleryView;
@@ -50,6 +53,7 @@ public class GalleryFragment extends MvpAppCompatFragment implements GalleryView
     ProgressBar progressBar;
 
     private Unbinder unbinder;
+    private GalleryAdapter galleryAdapter;
 
     @ProvidePresenter
     GalleryPresenter providePresenter(){
@@ -69,7 +73,7 @@ public class GalleryFragment extends MvpAppCompatFragment implements GalleryView
 
         unbinder = ButterKnife.bind(this, v);
 
-        GalleryAdapter galleryAdapter = new GalleryAdapter();
+        galleryAdapter = new GalleryAdapter();
         recyclerView.setAdapter(galleryAdapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -81,5 +85,10 @@ public class GalleryFragment extends MvpAppCompatFragment implements GalleryView
     public void onDestroy() {
         super.onDestroy();
         unbinder.unbind();
+    }
+
+    @Override
+    public void showImages(HashMap<String, Image> list) {
+        galleryAdapter.setImages(list);
     }
 }

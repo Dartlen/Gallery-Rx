@@ -3,6 +3,7 @@ package by.project.dartlen.gallery;
 import android.app.Application;
 import android.content.Context;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -19,7 +20,7 @@ public class GalleryApp extends Application{
         initComponentsTree();
         initAppComponent();
         initLeakCanary();
-
+        initFresco();
     }
 
     public static ComponentsManager getComponentsManager(){
@@ -44,6 +45,10 @@ public class GalleryApp extends Application{
 
     private void initComponentsTree(){
         componentsManager = new ComponentsManager(this);
+    }
+
+    private void initFresco(){
+        Fresco.initialize(this);
     }
 
 }
