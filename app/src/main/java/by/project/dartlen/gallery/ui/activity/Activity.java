@@ -2,6 +2,9 @@ package by.project.dartlen.gallery.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -10,6 +13,8 @@ import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import by.project.dartlen.gallery.GalleryApp;
 import by.project.dartlen.gallery.R;
 import by.project.dartlen.gallery.presentation.activity.ActivityPresenter;
@@ -45,6 +50,9 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
 
     @Inject
     Router router;
+
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @ProvidePresenter
     ActivityPresenter providePresenter(){
@@ -89,6 +97,9 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
+        ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
+
         presenter.onStart();
     }
 
@@ -96,5 +107,25 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
     protected void onPause() {
         navigatorHolder.removeNavigator();
         super.onPause();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle app bar item clicks here. The app bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case R.id.append:
+
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
