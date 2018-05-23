@@ -6,4 +6,6 @@ public class Constants {
     public static final String GALLERY = "gallery";
 
     public static final int RC_SIGN_IN = 1;
+
+    public static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 1488;
 }

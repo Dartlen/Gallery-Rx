@@ -1,6 +1,8 @@
 package by.project.dartlen.gallery.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -28,6 +30,7 @@ import ru.terrakok.cicerone.NavigatorHolder;
 import ru.terrakok.cicerone.Router;
 import ru.terrakok.cicerone.android.SupportFragmentNavigator;
 
+import static by.project.dartlen.gallery.utils.Constants.CAMERA_CAPTURE_IMAGE_REQUEST_CODE;
 import static by.project.dartlen.gallery.utils.Constants.GALLERY;
 import static by.project.dartlen.gallery.utils.Constants.LOGIN;
 import static by.project.dartlen.gallery.utils.Constants.SIGNUP;
@@ -51,8 +54,8 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
     @Inject
     Router router;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    /*@BindView(R.id.toolbar)
+    Toolbar toolbar;*/
 
     @ProvidePresenter
     ActivityPresenter providePresenter(){
@@ -98,9 +101,11 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
         ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
 
         presenter.onStart();
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
     }
 
     @Override
@@ -110,22 +115,8 @@ public class Activity extends MvpAppCompatActivity implements ActivityView {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle app bar item clicks here. The app bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-            case R.id.append:
-
-                return true;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

@@ -7,8 +7,8 @@
     <item
         android:id="@+id/append"
         android:orderInCategory="100"
-        android:title="dsa"
-        android:icon="@drawable/met_ic_clear"
+        android:title="@string/no_title"
+        android:icon="@drawable/ic_action_name"
         app:showAsAction="ifRoom" />
 
 </menu>
